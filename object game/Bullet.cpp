@@ -1,5 +1,5 @@
 #include "Bullet.h"
-
+#define BULLET_SPEED 0.2
 Bullet::Bullet()
 {
 	type = BULLET;

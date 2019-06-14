@@ -27,8 +27,6 @@ void Bird::CaculateAB(float xx, float yy)
 
 void Bird::CaculateABwithNinja()
 {
-	
-
 	float x1 = this->position.x;
 	float y1 = this->position.y;
 	float x2 = Ninja::GetInstance()->GetPosition().x;
@@ -62,22 +60,6 @@ void Bird::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	if (a == 0 && b == -9999) CaculateABwithNinja();
 	position.x += dx;
 	position.y = this->a*position.x + this->b+10;
-	//Nếu va chạm ninja thì tính lại phương trình bay
-	/*if (isInNinja == 0 && checkAABB(Ninja::GetInstance()))
-	{
-		isInNinja = 1;
-		if (vx > 0)
-		{
-			CaculateAB(position.x + 60, position.y);
-			change = position.x + 60;
-		}
-		else
-		{
-			CaculateAB(position.x - 60, position.y);
-			change = position.x - 60;
-		}
-
-	}*/
 
 	if (vx > 0)
 	{
@@ -92,7 +74,6 @@ void Bird::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			}
 			else//nếu không va chạm
 			{
-				//vx = -NINJA_WALKING_SPEED;
 				CaculateABwithNinja();
 			}
 		}

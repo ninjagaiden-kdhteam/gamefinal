@@ -3,6 +3,31 @@
 #include <cmath>
 #define BOSS_JUMP_SPEED_Y		0.35f
 #define BOSS_SPEED 0.15f
+
+void Boss::SetActive(int x)
+{
+	IsActive = x;
+	if (x == 0)
+	{
+		//direction = initdirection;
+	}
+}
+
+vector<Bullet*> Boss::getBullets()
+{
+	vector<Bullet*> list;
+	list.clear();
+	for (int i = 0; i < bullets.size(); i++)
+		if (bullets[i]->GetActive() == 1)
+			list.push_back(bullets[i]);
+	return list;
+}
+
+void Boss::deleteBullet()
+{
+	bullets.clear();
+}
+
 Boss::Boss()
 {
 	this->HP = 16;
@@ -11,7 +36,6 @@ Boss::Boss()
 	position.y = 0;
 	direction = -1;
 	vx = -BOSS_SPEED;
-	vy = -0.14f;
 	this->AddAnimation(250);
 	this->AddAnimation(251);
 	this->state = State::JUMP;

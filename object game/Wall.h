@@ -28,6 +28,5 @@ public:
 		//RenderBoundingBox();
 	}
 
-	void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL)
-	{}
+	void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL){}
 };

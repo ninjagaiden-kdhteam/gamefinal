@@ -18,27 +18,9 @@ public:
 	void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
 	void Render();
 	void startStopping();
-	void deleteBullet()
-	{
-		bullets.clear();
-	}
+	void deleteBullet();
 	void GetBoundingBox(float &l, float &t, float &r, float &b);
-	void SetActive(int x)
-	{
-		IsActive = x;
-		if (x == 0)
-		{
-			//direction = initdirection;
-		}
-	}
+	void SetActive(int x);
 	void updateBullet(DWORD dt);
-	vector<Bullet*> getBullets()
-	{
-		vector<Bullet*> list;
-		list.clear();
-		for (int i = 0; i < bullets.size(); i++)
-			if (bullets[i]->GetActive() == 1)
-				list.push_back(bullets[i]);
-		return list;
-	}
+	vector<Bullet*> getBullets();
 };

@@ -61,8 +61,6 @@ void GameObject::GetBoundingBox(float &l, float &t, float &r, float &b)
 	b = t + h;
 }
 
-
-
 void GameObject::RenderBoundingBox()
 {
 	float l, t, r, b;
@@ -70,11 +68,11 @@ void GameObject::RenderBoundingBox()
 	GameObject::GetBoundingBox(l, t, r, b);
 	D3DXVECTOR3 p = D3DXVECTOR3(l, t, 0);
 
-		if (type != WALL && type != BRICK)
-		{
-			p.x -= 2;
-			p.y -= 2;
-		}
+	if (type != WALL && type != BRICK)
+	{
+		p.x -= 2;
+		p.y -= 2;
+	}
 	
 
 	if (direction <= 0)
