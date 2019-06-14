@@ -53,6 +53,13 @@ void GameObject::GetBoundingBox(float &l, float &t, float &r, float &b)
 		p1.x += 110;
 		p1.y += 70;
 	}
+	if (type != BRICK && type != WALL)
+	{
+		p1.x -= 2;
+		p1.y += 2;
+		w = w + 2;
+		h = h + 2;
+	}
 	p1 = Camera::GetInstance()->Transform(p1);
 	l = p1.x;
 	t = p1.y;
@@ -68,12 +75,6 @@ void GameObject::RenderBoundingBox()
 	GameObject::GetBoundingBox(l, t, r, b);
 	D3DXVECTOR3 p = D3DXVECTOR3(l, t, 0);
 
-	if (type != WALL && type != BRICK)
-	{
-		p.x -= 2;
-		p.y -= 2;
-	}
-	
 
 	if (direction <= 0)
 	{
@@ -86,8 +87,8 @@ void GameObject::RenderBoundingBox()
 
 	rect.left = 0;
 	rect.top = 0;
-	rect.right = ((int)r - (int)l)+2;
-	rect.bottom = ((int)b - (int)t)+2;
+	rect.right = ((int)r - (int)l);
+	rect.bottom = ((int)b - (int)t);
 	LPD3DXSPRITE spriteHandler = Graphic::GetInstance()->GetSpriteHandler();
 	spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	spriteHandler->Draw(bbox, &rect, NULL, &p, D3DCOLOR_ARGB(90, 255, 255, 255));
