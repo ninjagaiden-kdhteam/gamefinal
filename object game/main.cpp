@@ -46,6 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR lpCmdLine,
 		(HMENU)NULL,
 		hInstance,
 		(LPVOID)NULL);
+
 	hwndGlobal = hWnd;
 
 	if (!hWnd)

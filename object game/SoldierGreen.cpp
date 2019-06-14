@@ -24,7 +24,7 @@ void SoldierGreen::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 		// block 
-		position.x += min_tx * dx + nx * 0.2f;		// nx*0.4f : need to push out a bit to avoid overlapping next frame
+		position.x += min_tx * dx + nx * 0.2f;
 		position.y += min_ty * dy - ny * 0.2f;
 
 		if (nx != 0) vx = 0;
@@ -38,11 +38,11 @@ void SoldierGreen::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	if (position.x <= leftX) { position.x = leftX; direction = 1; vx = -vx; }
 	time = time + dt;
 
-	//chưa đến thời điểm bắn ra đạn mới
+	
 	if (time < 1500)
 		bullet->Update(dt);
 
-	//bắn ra đạn mới
+	
 	if (time > 1500) {
 		time = 0;
 		delete bullet;
@@ -61,13 +61,13 @@ void SoldierGreen::Render()
 	{
 		ani = SOLDIERGREEN_ANI_ATTACK;
 		countFrame++;
-		if (countFrame > 4) countFrame = -1; //đếm cho tới đủ 4 frame attack
+		if (countFrame > 4) countFrame = -1;
 	}
 		
 	animations[ani]->Render(position.x, position.y, lientuc, this->direction, xx, yy, w, h);
 
 	//RenderBoundingBox();
-	bullet->Render(); //render cho đạn của nó
+	bullet->Render();
 }
 SoldierGreen::SoldierGreen(int id, int type, int x, int y, int direction, int leftX, int rightX,int distance) :Enemy::Enemy(id, type, x, y, direction, leftX, rightX, distance)
 {

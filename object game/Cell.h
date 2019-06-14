@@ -10,13 +10,13 @@ using namespace std;
 class Cell
 {
 	int id;
-	map<int, LPGAMEOBJECT> listObj;//danh sách đối tượng nằm trong cell
+	map<int, LPGAMEOBJECT> listObj;
 public:
 	Cell();
 	Cell(int id);
-	void AddObject(int id, LPGAMEOBJECT value);//thêm đối tượng vào cell
-	map<int, LPGAMEOBJECT> GetListObject();//lấy danh sách đối tượng thuộc cell
-	void Remove(int id);//xóa đối tượng khỏi cell
+	void AddObject(int id, LPGAMEOBJECT value);
+	map<int, LPGAMEOBJECT> GetListObject();
+	void Remove(int id);
 	~Cell();
 };
 typedef Cell* LPCELL;

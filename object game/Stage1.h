@@ -11,10 +11,10 @@
 class Stage1: public GameStage
 {
 private:
-	wchar_t buffer[256]; //buffer để viết lên màn hình
+	
 
-	vector<LPGAMEOBJECT> bricks; //list gạch của map 1
-	vector<LPGAMEOBJECT> enemies; //list quái của map 1
+	vector<LPGAMEOBJECT> bricks;
+	vector<LPGAMEOBJECT> enemies;
 public:
 	Stage1();
 	~Stage1();
@@ -25,9 +25,9 @@ public:
 	void Update(DWORD);
 	void Render();
 
-	void RenderGameOver(); //vẽ màn hình game over
-	void ProcessGameOver(DWORD); //xử lý game over
-	void RenderScoreboard(); //vẽ bảng điểm
-	void getBrick(); //lấy thông tin gạch map1 từ file txt
+	void RenderGameOver();
+	void ProcessGameOver(DWORD);
+	void RenderScoreboard();
+	void getBrick();
 };
 

@@ -32,19 +32,19 @@ class Grid
 	int stage;
 	string cellfilePath;
 	string objectfilePath;
-	map<int, LPCELL> listCell;//lưu danh dách các cell
-	map<int, LPGAMEOBJECT> listObject;//lưu danh sách các object
+	map<int, LPCELL> listCell;
+	map<int, LPGAMEOBJECT> listObject;
 public:
 	Grid(int stage);
 	~Grid();
-	int CountWords(string str);//đếm số từ trong chuỗi
+	int CountWords(string str);
 	LPGAMEOBJECT CreateObject(int id, int type, int x, int y, int direction, int leftX, int rightX,int distance, int itemtype);//tạo đối tượng
-	void LoadListObject();//đọc danh sách đối tượng từ file
-	void LoadListCell();//đọc danh sách cell từ file
-	vector<LPGAMEOBJECT> GetListObject();//lấy object nằm trong cell
-	void MoveObject(LPGAMEOBJECT x, int xOld, int yOld, int wOld);//chuyển object từ cell này sang cell khác
-	void InsertObject(LPGAMEOBJECT x);//chèn 1 object vào cell
-	void ReLoadGrid();//load lại grid khi ninja chết, chơi lại game
+	void LoadListObject();
+	void LoadListCell();
+	vector<LPGAMEOBJECT> GetListObject();
+	void MoveObject(LPGAMEOBJECT x, int xOld, int yOld, int wOld);
+	void InsertObject(LPGAMEOBJECT x);
+	void ReLoadGrid();
 	void TurnOffActive();//tắt active của object ngoài camera
 	bool CheckXuatHien(LPGAMEOBJECT obj);//kiểm tra điều kiện để lấy ra khỏi grid
 };

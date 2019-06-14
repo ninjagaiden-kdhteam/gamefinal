@@ -45,7 +45,6 @@ void Stage3::Initialize()
 	getBrick();
 
 	boss = new Boss();
-	//Nền game (thêm vào cho dễ nhìn :D)
 	back = new Background(3);
 	Time::GetInstance()->Reset();
 	Items::GetInstance()->Clear();
@@ -87,7 +86,6 @@ void Stage3::Update(DWORD dt)
 		vector<LPGAMEOBJECT> Coobjects;
 		Coobjects.clear();
 
-		//push bricks and enemies
 #pragma region push bricks and enemies
 		for (int i = 0; i < bricks.size(); i++)
 			Coobjects.push_back(bricks[i]);
@@ -97,21 +95,17 @@ void Stage3::Update(DWORD dt)
 			Coobjects.push_back(boss);
 
 			vector<Bullet*> listBullet;
-			listBullet = boss->getBullets(); //đưa 3 viên đạn (nếu có) của boss vào xét va chạm
+			listBullet = boss->getBullets();
 			for (auto x : listBullet)
 				Coobjects.push_back(x);
 		}
 #pragma endregion
 
 		ninja->Update(dt, &Coobjects);
-
-		//VA CHẠM CHO QUÁI
-		//************************************************************
-	
-		back->Update(dt); //update vị trí background
+		back->Update(dt);
 		boss->Update(dt, &bricks);
 
-		Time::GetInstance()->Update(dt); //đếm thời gian cho game
+		Time::GetInstance()->Update(dt);
 
 		if (boss->getHP() <= 0)
 		{
@@ -151,9 +145,9 @@ void Stage3::Render()
 		LPSPRITE spblack = Sprites::GetInstance()->Get(370);
 		spblack->RenderNotTransForm(0, 0);
 
-		Explosion::GetInstance()->Render(); //render nổ nếu đang xảy ra
+		Explosion::GetInstance()->Render();
 
-		this->RenderScoreboard(); //vẽ bảng điểm
+		this->RenderScoreboard();
 
 		if (IsGamePause)
 		{

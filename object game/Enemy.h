@@ -5,9 +5,7 @@
 class Enemy :public GameObject
 {
 protected:
-	//khoảng cách so với ninja để enemy xuất hiện
 	float distance;
-	//biên trái phải mà enemy có thể di chuyển
 	int leftX, rightX;
 public:
 	Enemy(int id, int type, int x, int y, int direction, int leftX, int rightX, int distance);

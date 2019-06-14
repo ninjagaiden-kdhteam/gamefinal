@@ -34,10 +34,9 @@ Boss::~Boss(){}
 
 void Boss::startStopping()
 {
-	if (atLeft == 1 && countShoot % 3 == 0) //nếu bắt đầu từ biên trái và di chuyển qua lại đúng 3 lần thì bắn đạn
+	if (atLeft == 1 && countShoot % 3 == 0)
 	{
-		deleteBullet(); //xóa hết đạn cũ
-		//tạo đạn mới
+		deleteBullet();
 		Bullet* b1 = new Bullet(211, 86, -1, 1);
 		Bullet* b2 = new Bullet(190, 66, -1, 1);
 		Bullet* b3 = new Bullet(170, 46, -1, 1);
@@ -66,8 +65,8 @@ void Boss::Update(DWORD dt, vector<LPGAMEOBJECT> *bricks)
 {
 	this->state = JUMP;
 	if (HP == 0) return;
-	updateBullet(dt); //update vị trí cho đạn
-	if (isStopping == 1) //dừng lại ở mỗi bên 1 chút
+	updateBullet(dt);
+	if (isStopping == 1)
 	{
 		this->state = IDLE;
 		if (GetTickCount() - start_stopping >= TIME_STOP)
@@ -86,8 +85,8 @@ void Boss::Update(DWORD dt, vector<LPGAMEOBJECT> *bricks)
 		direction = -1;
 		vx = -BOSS_SPEED;
 		if(atLeft==1) startStopping();
-		atRight = 1; //đánh dấu đã qua biên phải
-		atLeft = 0; //bỏ đánh dấu biên trái
+		atRight = 1;
+		atLeft = 0;
 	}
 	if (position.x <= -88)
 	{

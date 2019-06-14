@@ -45,7 +45,6 @@ void Stage2::getWall()
 		Wall *wall = new Wall(l, t, w,h,min,max,climb);
 		walls.push_back(wall);
 	}
-
 	fs.close();
 }
 
@@ -63,10 +62,9 @@ void Stage2::Initialize()
 #pragma region Lấy instance Ninja +add animation
 
 	ninja = Ninja::GetInstance();
-	ninja->DecreaseHP(-20); //tăng máu lên full
+	ninja->DecreaseHP(-20);
 	ninja->SetPosition(D3DXVECTOR3(NINJA_POSITION_MAP2_X, NINJA_POSITION_MAP2_Y, 0));
-	//ninja->SetPosition(D3DXVECTOR3(1997, NINJA_POSITION_MAP2_Y+50, 0));
-	ninja->SetLife(2); //tạo lại 2 mạng cho ninja
+	ninja->SetLife(2);
 #pragma endregion
 
 	getBrick();
@@ -127,10 +125,10 @@ void Stage2::Update(DWORD dt)
 		for (int i = 0; i < walls.size(); i++)
 			Coobjects.push_back(walls[i]);
 
-		grid->TurnOffActive(); //tắt active cho quái ngoài camera
+		grid->TurnOffActive();
 
 		enemies.clear();
-		enemies = grid->GetListObject(); //get tất cả quái đang hoạt động trong camera
+		enemies = grid->GetListObject();
 
 		for (int i = 0; i < enemies.size(); i++)
 			Coobjects.push_back(enemies[i]);
@@ -191,12 +189,12 @@ void Stage2::Render()
 				x->Render();
 		}
 
-		Explosion::GetInstance()->Render();//Render nếu hiệu ứng nổ nào đang có trong game
+		Explosion::GetInstance()->Render();
 
 		for (auto x : items)
 			x->Render();
 
-		this->RenderScoreboard(); //vẽ bảng điểm
+		this->RenderScoreboard();
 
 		if (IsGamePause)
 		{

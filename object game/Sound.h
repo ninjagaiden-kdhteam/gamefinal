@@ -11,7 +11,7 @@
 class Sound
 {
 private:
-	map<ESound, CSound* > listSound; //lưu danh sách âm thanh
+	map<ESound, CSound* > listSound;
 
 public:
 	static Sound * __Instance;

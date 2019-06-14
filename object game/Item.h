@@ -6,12 +6,12 @@
 class Item :public GameObject
 {
 protected:
-	EItem itemtype;//loại item
-	int timeDisplayed;//thời gian đã tồn tại, >2500 thì bị biến mất
+	EItem itemtype;
+	int timeDisplayed;
 public:
 	void Render();
-	void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);//xử lý đụng độ gạch
-	Item(int itemtype,float x,float y);//x,  y vị trí được tạo ra, lấy luôn vị trí container
+	void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects = NULL);
+	Item(int itemtype,float x,float y);
 	void GetBoundingBox(float & l, float & t, float & r, float & b);
 	void setDie();//set một số thông số cho item để item biến mất
 	EItem getItemType() { return itemtype; }

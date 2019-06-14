@@ -35,7 +35,7 @@ void SoldierYellow::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 		// block 
-		position.x += min_tx*dx + nx*0.2f;		// nx*0.4f : need to push out a bit to avoid overlapping next frame
+		position.x += min_tx*dx + nx*0.2f;
 		position.y += min_ty*dy - ny*0.2f;
 
 		if (nx != 0)

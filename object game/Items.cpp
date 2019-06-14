@@ -23,7 +23,7 @@ vector<Item*> Items::GetAllItems()
 	vector<Item*> newitems;
 	newitems.clear();
 	for (auto x : items)
-		if (x->GetActive() == 1)//item chưa bị biến mất thì mới lấy
+		if (x->GetActive() == 1)
 			newitems.push_back(x);
 	return newitems;
 }

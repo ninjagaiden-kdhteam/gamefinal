@@ -3,7 +3,7 @@
 Stage1::Stage1()
 {
 	Select = 1;
-	this->ChangeStage(1); //change stage=map1: chưa đổi map
+	this->ChangeStage(1);
 }
 
 
@@ -53,9 +53,9 @@ void Stage1::Initialize()
 	
 #pragma endregion
 
-	getBrick(); //đọc thông tin bricks từ file text
-	back = new Background(1); //Tạo back để vẽ background map1
-	grid = new Grid(1); //tạo grid map1
+	getBrick();
+	back = new Background(1);
+	grid = new Grid(1);
 	Time::GetInstance()->Reset();
 	Items::GetInstance()->Clear();
 }
@@ -92,7 +92,7 @@ void Stage1::Update(DWORD dt)
 			this->ChangeStage(2);
 			return;
 		}
-		vector<Item*> items = Items::GetInstance()->GetAllItems(); //lấy tất cả item đang có trong camera
+		vector<Item*> items = Items::GetInstance()->GetAllItems();
 		for (auto x : items)
 			x->Update(dt, &bricks);
 
@@ -105,10 +105,10 @@ void Stage1::Update(DWORD dt)
 		for (int i = 0; i < bricks.size(); i++)
 			Coobjects.push_back(bricks[i]);
 
-		grid->TurnOffActive(); //tắt active cho quái ngoài camera
+		grid->TurnOffActive();
 
 		enemies.clear();
-		enemies = grid->GetListObject(); //get tất cả quái đang hoạt động trong camera
+		enemies = grid->GetListObject();
 
 		for (int i = 0; i < enemies.size(); i++)
 			Coobjects.push_back(enemies[i]);
@@ -140,9 +140,9 @@ void Stage1::Update(DWORD dt)
 			Camera::GetInstance()->Update(ninja->GetPosition());
 		}
 
-		back->Update(dt); //update vị trí cho background
+		back->Update(dt);
 
-		Time::GetInstance()->Update(dt); //đếm thời gian game
+		Time::GetInstance()->Update(dt);
 	}
 
 
@@ -156,7 +156,7 @@ void Stage1::Update(DWORD dt)
 
 void Stage1::Render()
 {
-	//ninja chưa chết
+	
 	if (!ninja->die)
 	{
 		vector<Item*> items = Items::GetInstance()->GetAllItems();
@@ -172,11 +172,11 @@ void Stage1::Render()
 		for (auto x : enemies)
 			x->Render();
 
-		Explosion::GetInstance()->Render(); //Render nếu hiệu ứng nổ nào đang có trong game
+		Explosion::GetInstance()->Render();
 		for (auto x : items)
 			x->Render();
 
-		this->RenderScoreboard(); //vẽ bảng điểm
+		this->RenderScoreboard();
 
 		if (IsGamePause)
 		{

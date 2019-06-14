@@ -18,7 +18,7 @@ void GreenSniper::Render()
 	{
 		ani = GREENSNIPER_ANI_ATTACK;
 		countFrame++;
-		if (countFrame > 4) countFrame = -1; //render liên tục 4 frame để thấy bắn tia lửa
+		if (countFrame > 4) countFrame = -1;
 	}
 	animations[ani]->Render(position.x, position.y, lientuc, this->direction, xx, yy, w, h);
 	bullet->Render();
@@ -47,7 +47,7 @@ void GreenSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 		// block 
-		position.x += min_tx * dx + nx * 0.2f;		// nx*0.4f : need to push out a bit to avoid overlapping next frame
+		position.x += min_tx * dx + nx * 0.2f;
 		position.y += min_ty * dy - ny * 0.2f;
 
 		if (nx != 0) vx = 0;
@@ -59,11 +59,9 @@ void GreenSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	time = time + dt;
 
-	//chưa tới thời điểm bắn ra đạn mới
 	if (time < 1500)
 		bullet->Update(dt);
 
-	//xóa đạn cũ đi, bắn đạn mới
 	if (time > 1500) {
 		time = 0;
 		delete bullet;
@@ -71,7 +69,7 @@ void GreenSniper::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		bullet->Update(dt);
 		countFrame++;
 	}
-	//hướng phụ thuộc vào hướng của ninja
+	
 	if (this->position.x > Ninja::GetInstance()->GetPosition().x)
 		direction = -1;
 	else direction = 1;

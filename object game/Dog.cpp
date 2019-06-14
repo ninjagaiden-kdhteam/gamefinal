@@ -25,7 +25,7 @@ void Dog::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny);
 		// block 
-		position.x += min_tx * dx + nx * 0.2f;		// nx*0.4f : need to push out a bit to avoid overlapping next frame
+		position.x += min_tx * dx + nx * 0.2f;
 		position.y += min_ty * dy - ny * 0.2f;
 
 		//if (nx != 0) vx = 0;
@@ -35,8 +35,8 @@ void Dog::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 
 
-	if (position.x > rightX-1) { position.x = rightX; direction = -1; vx = -vx; }
-	if (position.x < leftX+1) { position.x = leftX; direction = 1; vx = -vx; }
+	if (position.x >= rightX) { position.x = rightX; direction = -1; vx = -vx; }
+	if (position.x <= leftX) { position.x = leftX; direction = 1; vx = -vx; }
 	if (position.y < 0)
 	{
 		IsActive = 0;

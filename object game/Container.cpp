@@ -2,8 +2,8 @@
 
 Container::Container(int id, int type, int x, int y, int direction, int itemtype)
 {
-	this->createdItem = 0;//chưa tạo item(chưa bị chém)
-	this->IsContainer = true;//là container
+	this->createdItem = 0;
+	this->IsContainer = true;
 	this->id = id;
 	this->type = (Type)type;
 	this->position = D3DXVECTOR3(x, y, 0);

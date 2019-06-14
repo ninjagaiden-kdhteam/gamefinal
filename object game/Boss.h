@@ -21,8 +21,6 @@ public:
 	void deleteBullet()
 	{
 		bullets.clear();
-	/*	for (int i = 0; i < bullets.size(); i++)
-			delete bullets[i];*/
 	}
 	void GetBoundingBox(float &l, float &t, float &r, float &b);
 	void SetActive(int x)
