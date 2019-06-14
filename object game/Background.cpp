@@ -59,7 +59,7 @@ void Background::Update(DWORD dt)
 	int x = Camera::GetInstance()->GetPosition().x;
 	leftFrame = x / SIZE_TILE_SET;
 	rightFrame = (x + GAME_WIDTH) / SIZE_TILE_SET;
-	//khi vẽ sẽ vẽ từ background[left]->background[right]
+	
 }
 
 void Background::Draw(int alpha)
@@ -69,10 +69,9 @@ void Background::Draw(int alpha)
 	for (int r = 0; r < row; r++)
 	{
 		int count = 0;
-		//cột từ left->right
 		for (int c = leftFrame; c <= rightFrame; c++)
 		{
-			//r * SIZE_TILE_SET+20: cộng thêm 20 để hạ vị trí vẽ xuống bớt, xóa "+20" rồi run game sẽ hiểu
+			//r * SIZE_TILE_SET+20: cộng thêm 20 để hạ vị trí vẽ xuống bớt
 			backGroundSprite->Render((float)(c*SIZE_TILE_SET - x), r * SIZE_TILE_SET+20, 0, 0, 0, matrixMap[r][c],alpha);
 			count++;
 		}

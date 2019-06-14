@@ -43,7 +43,7 @@ Ninja::Ninja() :GameObject::GameObject()
 
 	//tạo mảng weapons
 	weapons.clear();
-	LPWEAPON w1 = new Sword(); //không được sử dụng
+	LPWEAPON w1 = new Sword(); 
 	w1->SetActive(0);
 	LPWEAPON w2 = new ThrowingStar();
 	w2->SetActive(0);
@@ -53,7 +53,7 @@ Ninja::Ninja() :GameObject::GameObject()
 	weapons.push_back(w2);
 	weapons.push_back(w3);
 
-	nowWeapon = NULL;// = weapons[2];//weapons[1]: throwing,weapons[2]: windmill
+	nowWeapon = NULL;//weapons[1]: throwing,weapons[2]: windmill
 
 	ninjaSword = new Sword(position.x, position.y, direction);
 }
@@ -68,6 +68,7 @@ int Ninja::isStillStopGame()
 	Time::GetInstance()->UnPause();
 	return 0;
 }
+
 //check có đang còn untouch không
 int Ninja::stillUntouchable()
 {
@@ -135,13 +136,13 @@ void Ninja::collisionBrick(vector<LPGAMEOBJECT> *coObjects, int coWall)
 //check ninja có trên mặt đất không
 int Ninja::isOnGround(vector<LPGAMEOBJECT> *bricks)
 {
-	vector<LPCOLLISIONEVENT> coEvents; //lưu danh sách cái object có thể va chạm trong frame tới
-	vector<LPCOLLISIONEVENT> coEventsResult;//lưu danh sách 2 object gần nhất sẽ va chạm, theo trục x, y
+	vector<LPCOLLISIONEVENT> coEvents; 
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	coEvents.clear();
-	CalcPotentialCollisions(bricks, coEvents);//tính toán coEvents
+	CalcPotentialCollisions(bricks, coEvents);
 
-	if (coEvents.size() == 0) //không có va chạm
+	if (coEvents.size() == 0) 
 	{
 		return 0;
 	}
@@ -158,13 +159,13 @@ int Ninja::isOnGround(vector<LPGAMEOBJECT> *bricks)
 int Ninja::collisionWall(vector<LPGAMEOBJECT> *coObjects)
 {
 	int iscol = 0; //kiểm tra có va chạm với wall ko
-	vector<LPCOLLISIONEVENT> coEvents; //lưu danh sách cái object có thể va chạm trong frame tới
-	vector<LPCOLLISIONEVENT> coEventsResult;//lưu danh sách 2 object gần nhất sẽ va chạm, theo trục x, y
+	vector<LPCOLLISIONEVENT> coEvents; 
+	vector<LPCOLLISIONEVENT> coEventsResult;
 	
 	coEvents.clear();
-	CalcPotentialCollisions(coObjects, coEvents);//không có va chạm
+	CalcPotentialCollisions(coObjects, coEvents);
 
-	if (coEvents.size() == 0) //không có va chạm
+	if (coEvents.size() == 0) 
 	{
 		return 0;
 	}
@@ -190,7 +191,7 @@ int Ninja::collisionWall(vector<LPGAMEOBJECT> *coObjects)
 			position.x += min_tx*dx + nx*0.2f;
 			vx = 0;
 			//nếu trong giới hạn bám tường
-			if (position.y <= maxClimb && position.y-32 >= minClimb) //32 là chiều cao ninja
+			if (position.y <= maxClimb && position.y-32 >= minClimb) 
 			{
 				iscol = 1;
 				canLatch = 1; //bật cờ canLatch, để keyUpdate sang trạng thái latch
@@ -201,12 +202,6 @@ int Ninja::collisionWall(vector<LPGAMEOBJECT> *coObjects)
 					else direction = 0;
 					isBeingAttacked = 0; //tắt trạng thái be attacked
 				}	
-				DebugOut(L"%d,%d,%f \n", minClimb, maxClimb, position.y);
-			}
-			else
-			{
-		/*		if (isBeingAttacked != 1)
-					vy += NINJA_GRAVITY;*/
 			}
 		}
 	}
@@ -218,13 +213,13 @@ int Ninja::collisionWall(vector<LPGAMEOBJECT> *coObjects)
 
 void Ninja::collisionEnemies(vector<LPGAMEOBJECT> *coObjects)
 {
-	vector<LPCOLLISIONEVENT> coEvents; //lưu danh sách cái object có thể va chạm trong frame tới
-	vector<LPCOLLISIONEVENT> coEventsResult;//lưu danh sách 2 object gần nhất sẽ va chạm, theo trục x, y
+	vector<LPCOLLISIONEVENT> coEvents; 
+	vector<LPCOLLISIONEVENT> coEventsResult;
 
 	coEvents.clear();
-	CalcPotentialCollisions(coObjects, coEvents); //tính toán coEvents
+	CalcPotentialCollisions(coObjects, coEvents);
 
-	if (coEvents.size() == 0)//không có va chạm
+	if (coEvents.size() == 0)
 	{
 		//xét xem có va chạm theo AABB không
 		for (UINT i = 0; i < coObjects->size(); i++)
@@ -267,7 +262,7 @@ void Ninja::collisionEnemies(vector<LPGAMEOBJECT> *coObjects)
 		{
 			//dựa vào loại quái để trừ HP
 			for (int i = 0; i < coEventsResult.size(); i++)
-				if (coEventsResult.at(i)->nx != 0)
+				if (coEventsResult.at(i)->nx != 0 || coEventsResult.at(i)->ny != 0)
 				{
 					if (coEventsResult.at(i)->obj->GetType() == BULLET)
 						this->DecreaseHP(2);
@@ -285,17 +280,13 @@ void Ninja::collisionEnemies(vector<LPGAMEOBJECT> *coObjects)
 			
 			if (direction < 1)
 			{
-				//va chạm từ phải
 				SetState(State::BEING_ATTACKED_LEFT);
 			}
 			else
 			{
-				//va chạm từ trái
 				SetState(State::BEING_ATTACKED_RIGHT);
 			}
 
-			
-			
 		}
 	}
 	// clean up collision events
@@ -305,7 +296,7 @@ void Ninja::collisionEnemies(vector<LPGAMEOBJECT> *coObjects)
 void Ninja::collisionItems()
 {
 	vector<Item*> coItems;
-	coItems = Items::GetInstance()->GetAllItems(); //lấy danh sách item đang xuất hiện trong camera
+	coItems = Items::GetInstance()->GetAllItems(); 
 	for (int i = 0; i < coItems.size(); i++)
 	{
 		if (checkAABB(coItems[i]))
@@ -416,10 +407,10 @@ void Ninja::processCollision(vector<LPGAMEOBJECT> *Coobjects)
 
 
 	int isCollideWall = 0;
-	if (!collisionWall(&walls)) //nếu đang không bám tường, thì mới xét tới gạch
+	if (!collisionWall(&walls)) 
 		collisionBrick(&bricks, isCollideWall);
 
-	//nếu không trong trạng thái untouchable thì mới xét va chạm với quái
+	
 	if (!stillUntouchable()) collisionEnemies(&enemies);
 
 	//đang sử dụng kiếm
@@ -432,7 +423,7 @@ void Ninja::processCollision(vector<LPGAMEOBJECT> *Coobjects)
 		ninjaSword->collisionEnemies(&objects);
 	}
 
-	//đang sử dụng phi tiêu, bật active cho phi tiêu đó
+	//đang sử dụng phi tiêu
 	if (isUsingItem)
 	{
 		if (nowWeapon != NULL)
@@ -477,7 +468,6 @@ void Ninja::processCollision(vector<LPGAMEOBJECT> *Coobjects)
 
 void Ninja::Update(DWORD dt, vector<LPGAMEOBJECT> *Coobjects)
 {
-	//DebugOut(L"%d \n", canLatch);
 	if (IsKeyPress(DIK_K)) godMode = 1 - godMode;
 	if (godMode == 1) HP = 16;
 	//check điều kiện ninja chết
@@ -488,13 +478,13 @@ void Ninja::Update(DWORD dt, vector<LPGAMEOBJECT> *Coobjects)
 		SetNullNowweapon();
 	}
 	
-	//nếu không phải đang bị tấn công, thì update trạng thái
+	
 	if (!isBeingAttacked) KeyUpdate(dt);
 	
 	//set biên trong map của ninja
 	int leftEdge = 0;
 	int rightEdge = 10000000;
-	//lấy biên phải dựa trên num background đang vẽ
+	
 	switch (Background::getNumBackGround())
 	{
 	case 1:
@@ -511,7 +501,6 @@ void Ninja::Update(DWORD dt, vector<LPGAMEOBJECT> *Coobjects)
 	
 	GameObject::Update(dt); //update dx,dy
 
-	// trọng lực kéo, nếu không phải đang leo tường
 	if (!isLatching)
 	{
 		vy -= GRAVITY;
@@ -529,23 +518,6 @@ void Ninja::Update(DWORD dt, vector<LPGAMEOBJECT> *Coobjects)
 
 void Ninja::KeyUpdate(DWORD dt)
 {
-	//bật/tắt godmode
-	
-//#pragma region Bị tấn công từ phải
-//	if (!stillUntouchable() && IsKeyDown(DIK_R))
-//	{
-//		this->SetState(State::BEING_ATTACKED_RIGHT);
-//		return;
-//	}
-//#pragma endregion
-//
-//#pragma region Bị tấn công từ trái
-//	if (!stillUntouchable() && IsKeyDown(DIK_T))
-//	{
-//		this->SetState(State::BEING_ATTACKED_LEFT);
-//		return;
-//	}
-//#pragma endregion
 
 #pragma region leo tường
 	if (canClimb>0 && this->GetisLatching() && (IsKeyDown(DIK_UP)))

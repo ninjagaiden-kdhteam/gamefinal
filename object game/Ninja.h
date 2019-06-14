@@ -43,7 +43,7 @@ private:
 	Sword *ninjaSword;
 #pragma endregion
 
-	int gameWidth; //dùng để check biên của map
+	int gameWidth; 
 
 	//giới hạn bức tường ninja đang leo
 	int minClimb; 

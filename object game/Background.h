@@ -8,8 +8,8 @@
 #define COLUMN 
 class Background
 {
-	static int numBackGround; //số thứ tự của background đang vẽ, giá trị =1,2,3 tương ứng với từng map 1,2,3
-	int **matrixMap; //ma trận 2 chiều, chứa nội dung file matrix.txt để vẽ background
+	static int numBackGround; 
+	int **matrixMap; 
 	int row;
 	int maxColumn;
 

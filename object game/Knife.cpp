@@ -23,14 +23,14 @@ void Knife::Render(float xMum, float yMum, int direction,DWORD dt)
 void Knife::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	if (IsGamePause) return;
-	GameObject::Update(dt); //update dx,dy
-	vy-= GRAVITY; //rơi theo trọng lực
+	GameObject::Update(dt); 
+	vy-= GRAVITY; 
 	position.x += dx;
 	position.y += dy;
 	if (position.y <= 24) //nếu đã bị rớt xuống đất
 	{
-		IsActive = 0;//trở về đánh dấu chưa được ném
-		position.x = -1; //set lại vị trí chưa được ném
+		IsActive = 0;
+		position.x = -1; 
 	}
 }
 

@@ -151,7 +151,7 @@ void Sword::collisionEnemies(vector<LPGAMEOBJECT> *enemies)
 				if(AllowSound)
 				Sound::GetInstance()->Play(chemtrungquai);
 
-				int frame = 0; //animation nổ bình thường
+				int frame = 0; 
 				//vị trí nổ = vị trí quái bị chém chết
 				float xExplode = enemies->at(i)->GetPosition().x;
 				float yExplode = enemies->at(i)->GetPosition().y;

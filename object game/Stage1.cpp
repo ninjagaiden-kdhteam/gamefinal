@@ -9,11 +9,7 @@ Stage1::Stage1()
 
 Stage1::~Stage1()
 {
-	/*delete grid;
-	delete back;
-	delete grid;
-	for (UINT i = 0; i < bricks.size(); i++) delete bricks[i];
-	for (UINT i = 0; i < enemies.size(); i++) delete enemies[i];*/
+
 }
 
 

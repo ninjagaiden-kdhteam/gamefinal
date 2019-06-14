@@ -74,7 +74,7 @@ void Sprite::Render(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int 
 	r.bottom = bottom;
 	D3DXVECTOR3 pos(x, y, 0);
 
-	//không phải đang vẽ background
+
 	if (backFrame < 0)
 	{
 		pos = Camera::GetInstance()->Transform(D3DXVECTOR3(x, y, 0));
@@ -97,7 +97,7 @@ void Sprite::Render(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int 
 	
 		spriteHandle->SetTransform(&oldTransform);
 	}
-	else //đang vẽ background
+	else 
 	{
 		if (alpha == KHONG_NHAY)
 			spriteHandle->Draw(texture, &r, NULL, &pos, D3DCOLOR_XRGB(255, 255, 255)); //vẽ background bình thường

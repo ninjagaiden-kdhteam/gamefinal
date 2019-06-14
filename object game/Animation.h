@@ -9,9 +9,9 @@ class Animation
 {
 	DWORD lastFrameTime; 
 	float defaultTime; //thời gian giữa 2 frame liền kề
-	int currentFrame; //frame hiện tại trong mảng frames
+	int currentFrame;
 
-	vector<LPSPRITE> frames; //mảng: chuỗi sprite của animation
+	vector<LPSPRITE> frames;
 public:
 	int GetCurrentFrame() { return currentFrame; } //lấy frame hiện tại của animation
 	Animation(float time){ this->defaultTime = time; lastFrameTime = -1; currentFrame = -1; }
